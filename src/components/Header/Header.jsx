@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import logo from '../../images/Logo.svg';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
+import { Link, Outlet } from 'react-router-dom';
 
 
 const Header = () => {
@@ -12,10 +13,11 @@ const Header = () => {
             </div>
             <img className='ms-4' src={logo} alt="" />
             <div className={`text-white flex flex-col md:flex-row text-left p-5 rounded-lg absolute md:static duration-500 bg-[#1C2B35] -ms-2 ${open ? 'top-24' : '-top-36'}`}>
-            <a className='me-4' href="/">Order</a>
-            <a className='me-4' href="/">Order Review</a>
-            <a className='me-4' href="">Manage Inventory</a>
-            <a className='me-4' href="">Login</a>
+            <Link className='me-4' to="/shop">Home</Link>
+            <Link className='me-4' to="/order">Order</Link>
+            <Link className='me-4' to="/">Order Review</Link>
+            <Link className='me-4' to="">Manage Inventory</Link>
+            <Link className='me-4' to="">Login</Link>
             </div>
         </div>
     );
