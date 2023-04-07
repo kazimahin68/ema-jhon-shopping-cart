@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Product from '../Product/Product';
 import Cart from '../Cart/Cart';
 import { addToDb, deleteShoppingCart, getShoppingCart } from '../../utilities/LocalStorage';
+import { Link } from 'react-router-dom';
+import { ArrowSmallRightIcon } from '@heroicons/react/24/solid';
+import './Shop.css';
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
@@ -47,6 +50,7 @@ const Shop = () => {
         addToDb(product.id);
     }
     const removeAllFromCart = () =>{
+        setCart([]);
         deleteShoppingCart();
     }
 
@@ -58,7 +62,9 @@ const Shop = () => {
             }
             </div>
             <div className='ms-4 basis-1/4 border border-[#95A0A7] rounded-md bg-[#FFE0B3]'>
-                <Cart cart={cart} removeAllFromCart={removeAllFromCart}></Cart>
+                <Cart cart={cart} removeAllFromCart={removeAllFromCart}>
+                    <Link to="/order"><button className='bg-[#FF9900] hover:bg-orange-700 border border-[#95A0A7] rounded-md bottom-0 p-3 font-bold w-full text-center mt-3 text-white'>Review Order <ArrowSmallRightIcon className='text-white w-5 h-5 inline ms-2 font-bold'></ArrowSmallRightIcon></button></Link>
+                </Cart>
             </div>
         </div>
     );
