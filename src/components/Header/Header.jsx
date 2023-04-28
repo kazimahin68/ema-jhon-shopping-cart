@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import logo from '../../images/Logo.svg';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import { Link, Outlet } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
 
 
 const Header = () => {
+
+    const {user, logOut} = useContext(AuthContext);
+    const [error, setError] = useState('');
     const [open, setOpen] = useState(false);
+
+    const handleSignOut = () =>{
+        setError('');
+        logOut()
+        .then(result =>{})
+        .catch(error =>{
+            setError(error.message);
+        })
+    }
     return (
         <div className='bg-[#1C2B35] flex items-center justify-between p-3 rounded-xl'>
             <div className='md:hidden' onClick={ () => setOpen(!open)}>
@@ -17,7 +30,7 @@ const Header = () => {
             <Link className='me-4' to="/order">Order</Link>
             <Link className='me-4' to="/">Order Review</Link>
             <Link className='me-4' to="">Manage Inventory</Link>
-            <Link className='me-4' to="/login">Login</Link>
+            {user ? <Link onClick={handleSignOut} className='me-4'>Sign Out</Link> : <Link className='me-4' to="/login">Login</Link>}
             </div>
         </div>
     );

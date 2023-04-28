@@ -20,7 +20,7 @@ const Order = () => {
         setCart([]);
         deleteShoppingCart();
     }
-    console.log(savedCart);
+    // console.log(savedCart);
     return (
         <div className='flex'> 
             <div className='basis-8/12 my-64'>

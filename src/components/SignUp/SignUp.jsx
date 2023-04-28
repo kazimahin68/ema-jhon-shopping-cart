@@ -6,29 +6,37 @@ import { AuthContext } from '../Provider/AuthProvider';
 
 const SignUp = () => {
 
-    const {createUser} = useContext(AuthContext);
-    
-    
+    const { createUser } = useContext(AuthContext);
+
+
     const [error, setError] = useState('');
-    const handleSignUp = (e) =>{
+    const [success, setSuccess] = useState('');
+
+    const handleSignUp = (e) => {
         e.preventDefault();
+        setSuccess('');
+        setError('');
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
-        if(password !== confirmPassword){
+        if (password !== confirmPassword) {
             setError("Your Password din't match");
             return;
         }
-    
-        createUser(email, password).then(result =>{
-            const registeredUser = result.user;
-            console.log(registeredUser);
-            form.reset()
-            .catch(error =>{
-                console.log(error)
+
+        createUser(email, password)
+            .then(result => {
+                const registeredUser = result.user;
+                console.log(registeredUser);
+                setSuccess('You are successfully registered')
+                form.reset()
             })
-        })
+            .catch(error => {
+                console.log(error);
+                setError(error.message);
+            })
+
     }
 
 
@@ -55,8 +63,9 @@ const SignUp = () => {
                         </label>
                         <input type="password" name='confirmPassword' placeholder="Retype your Password" className="input input-bordered w-full" />
                     </div>
-                    <p>{error}</p>
+                    <p className='text-red-500'>{error}</p>
                     <button className="btn bg-[#ffe1b3] text-black w-full p-4 mt-11">Register</button>
+                    <p className='text-green-500 mt-5'>{success}</p>
                     <p className='text-center mt-5'>Already Have an account?<span className='text-[#FF9900]'> <Link to='/login'>Login</Link></span></p>
                     <div className='flex justify-around items-center mt-5'>
                         <hr className='border-2 w-1/3' />
