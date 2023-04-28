@@ -6,7 +6,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 
 const SignUp = () => {
 
-    const { createUser } = useContext(AuthContext);
+    const { createUser, handleGoogleLogin } = useContext(AuthContext);
 
 
     const [error, setError] = useState('');
@@ -37,6 +37,16 @@ const SignUp = () => {
                 setError(error.message);
             })
 
+    }
+
+    const handleGoogleSignUp = () =>{
+        handleGoogleLogin()
+            .then(result =>{
+                setSuccess('You are Successfully Register')
+            })
+            .catch(error =>{
+                setError(error.message)
+            })
     }
 
 
@@ -72,7 +82,7 @@ const SignUp = () => {
                         <p className='text-[#95A0A7]'>Or</p>
                         <hr className='border-2 w-1/3' />
                     </div>
-                    <button className="btn btn-outline text-black w-full p-4 mt-11">Continue with Google</button>
+                    <button onClick={handleGoogleSignUp} className="btn btn-outline text-black w-full p-4 mt-11">Continue with Google</button>
                 </div>
             </div>
         </form>
