@@ -11,6 +11,7 @@ const SignUp = () => {
 
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [show, setShow] = useState(false);
 
     const handleSignUp = (e) => {
         e.preventDefault();
@@ -55,6 +56,7 @@ const SignUp = () => {
         <form onSubmit={handleSignUp}>
             <div className='flex items-center justify-center mt-32 flex-col'>
                 <div className='border-[#95A0A7] border-2 rounded-lg p-11 w-5/12'>
+                    <h2 className='text-2xl font-bold text-center text-[#2A414F] mb-6'>Sign Up</h2>
                     <div>
                         <label className="label">
                             <span className="label-text">Email</span>
@@ -65,7 +67,8 @@ const SignUp = () => {
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
-                        <input type="password" name='password' placeholder="Your Password" className="input input-bordered w-full" />
+                        <input type={show ? "text" : "password"} name='password' placeholder="Your Password" className="input input-bordered w-full" />
+                        <p className='cursor-pointer mt-5' onClick={() => setShow(!show)}>{show ? <span>Hide Password</span> : <span>Show Password</span>}</p>
                     </div>
                     <div className='mt-5'>
                         <label className="label">
