@@ -4,7 +4,7 @@ import AuthProvider, { AuthContext } from '../Provider/AuthProvider';
 
 const Login = () => {
 
-    const { loggedIn } = useContext(AuthContext);
+    const { loggedIn, handleGoogleLogin } = useContext(AuthContext);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -40,6 +40,17 @@ const Login = () => {
             })
     }
 
+    const handleGoogleLoggedIn = () =>{
+        handleGoogleLogin()
+        .then((result) =>{
+            setSuccess("You are Successfully Logged In")
+            navigate(from, {replace: true})
+        })
+        .catch(error =>{
+            setError(error.message)
+        })
+    }
+
     return (
         <form onSubmit={handleLogin} className='flex items-center justify-center mt-32 flex-col'>
             <div className='border-[#95A0A7] border-2 rounded-lg p-11 w-5/12'>
@@ -66,7 +77,7 @@ const Login = () => {
                     <p className='text-[#95A0A7]'>Or</p>
                     <hr className='border-2 w-1/3' />
                 </div>
-                <button className="btn btn-outline text-black w-full p-4 mt-11">Continue with Google</button>
+                <button onClick={handleGoogleLoggedIn} className="btn btn-outline text-black w-full p-4 mt-11">Continue with Google</button>
             </div>
         </form>
     );

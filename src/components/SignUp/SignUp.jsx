@@ -6,7 +6,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 
 const SignUp = () => {
 
-    const { createUser, handleGoogleLogin } = useContext(AuthContext);
+    const { createUser, handleGoogleSingUp } = useContext(AuthContext);
 
 
     const [error, setError] = useState('');
@@ -41,7 +41,7 @@ const SignUp = () => {
     }
 
     const handleGoogleSignUp = () =>{
-        handleGoogleLogin()
+        handleGoogleSingUp()
             .then(result =>{
                 setSuccess('You are Successfully Register')
             })
