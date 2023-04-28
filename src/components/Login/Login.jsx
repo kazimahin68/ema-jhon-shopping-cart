@@ -12,6 +12,7 @@ const Login = () => {
 
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [show, setShow] = useState(false);
 
     
 
@@ -52,7 +53,8 @@ const Login = () => {
                     <label className="label">
                         <span className="label-text">Password</span>
                     </label>
-                    <input name='password' type="password" placeholder="Your Password" className="input input-bordered w-full" />
+                    <input name='password' type={show ? "text" : "password" } placeholder="Your Password" className="input input-bordered w-full" />
+                    <p className='cursor-pointer mt-5' onClick={() => setShow(!show)}>{show ? <span>Hide Password</span> : <span>Show Password</span>}</p>
                 </div>
                 <p className='text-red-500'>{error}</p>
                 <button className="btn bg-[#ffe1b3] text-black w-full p-4 mt-11">Login</button>

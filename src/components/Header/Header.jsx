@@ -28,7 +28,7 @@ const Header = () => {
             <div className={`text-white flex flex-col md:flex-row text-left p-5 rounded-lg absolute md:static duration-500 bg-[#1C2B35] -ms-2 ${open ? 'top-24' : '-top-36'}`}>
             <Link className='me-4' to="/">Home</Link>
             <Link className='me-4' to="/order">Order</Link>
-            <Link className='me-4' to="/">Order Review</Link>
+            <Link className='me-4' to="">Order Review</Link>
             <Link className='me-4' to="">Manage Inventory</Link>
             {user ? <Link onClick={handleSignOut} className='me-4'>Sign Out</Link> : <Link className='me-4' to="/login">Login</Link>}
             </div>
